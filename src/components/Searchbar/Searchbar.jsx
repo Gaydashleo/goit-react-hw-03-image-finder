@@ -21,7 +21,7 @@ export class SearchBar extends Component{
   };
 
   handleChange = event => {
-    this.setState({ query: event.Target.value });
+    this.setState({ query: event.currentTarget.value });
   };
 
   handleSubmit = event => {
