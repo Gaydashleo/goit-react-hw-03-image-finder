@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
-import {ButtonStyled} from './Button.styled'
+import { StyledButton } from './Button.styled';
 
-export const Button = ({ children, onClick }) => {
-  <ButtonStyled type="button" onClick={onClick}>
+export const Button = ({ children, onClick }) => (
+  <StyledButton type="button" onClick={onClick}>
     {children}
-  </ButtonStyled>
-};
+  </StyledButton>
+);
 
-Button.prop.Types = {
+Button.propTypes = {
   children: PropTypes.node,
   onClick: PropTypes.func,
 };

@@ -1,8 +1,9 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
+import { FcSearch} from "react-icons/fc";
 import {
- Header,
+  Header,
   Form,
   Input,
   Button,
@@ -43,9 +44,9 @@ export class SearchBar extends Component{
   
     return (
  <Header>
-  <Form >
+  <Form onSubmit={this.handleSubmit}>
     <Button type="submit" >
-      <span className="button-label">Search</span>
+      <FcSearch style={{ width: 30, height: 30 }} />
     </Button>
 
     <Input

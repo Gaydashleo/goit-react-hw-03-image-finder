@@ -8,7 +8,7 @@ import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Button } from 'components/Button/Button';
 import { Loader } from 'components/Loader/Loader';
 import { Modal } from 'components/Modal/Modal';
-import { fetchData } from 'components/Pixabay/PixabayApi';
+import { fetchData } from 'services/PixabayApi';
 
 export class App extends Component {
   state = {
