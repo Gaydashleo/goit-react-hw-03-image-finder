@@ -5,6 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Container } from './App.styled';
 import { SearchBar } from 'components/Searchbar/Searchbar';
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
+import { Button } from 'components/Button/Button';
+import { Loader } from 'components/Loader/Loader';
 
 export class App extends Component {
   state = {
@@ -36,18 +38,18 @@ export class App extends Component {
   render() {
     const{images}=this.state
 
-     return (
-       <Container>
-         <SearchBar onSubmit={this.handleSearch}/>
+    return (
+    <Container>
+        <SearchBar onSubmit={this.handleSearch}/>
 
-        <ImageGallery images={images} onClick={this.toggleModal}/>
-      <ToastContainer
-position="bottom-center"
-autoClose={5000}
-closeOnClick
-/>
-   </Container>
+        <ImageGallery images={images} onClick={this.toggleModal} />
+        
+
+
+      <ToastContainer position="bottom-center" closeOnClick autoClose={5000}/>
+
+  </Container>
   );
 };
   }
- 
+
