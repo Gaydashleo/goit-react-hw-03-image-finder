@@ -1,0 +1,15 @@
+import { Component, PropTypes } from 'react';
+// import PropTypes from 'prop-types';
+import { createPortal } from 'react-dom/client';
+import { } from './Modal.styled';
+
+const modalroot = document.querySelector('#modal-root');
+
+export class Modal extends Component {
+  static propTypes = {
+    onClick: PropTypes.func,
+    onClose: PropTypes.func,
+    children: PropTypes.node.is
+  }
+
+}
