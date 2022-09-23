@@ -5,11 +5,11 @@ import { Gallery } from './ImageGallery.styled';
 export const ImageGallery = ({ images, onClick}) => {
   return (
     <Gallery>
-      {images.map(({ id, smallFormat, largeFormat, tags }) => (
+      {images.map(({ id, webformatURL, largeImageURL, tags }) => (
         <ImageGalleryItem
           key={id}
-          smallFormat={smallFormat}
-          largeFormat={largeFormat}
+          webformatURL={webformatURL}
+          largeImageURLt={largeImageURL}
           tags={tags}
           onClick={onClick} />
       ))}

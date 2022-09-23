@@ -1,9 +1,10 @@
-import { Component, PropTypes } from 'react';
-// import PropTypes from 'prop-types';
-import { createPortal } from 'react-dom/client';
-import { } from './Modal.styled';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
+import { createPortal } from 'react-dom';
+import { Overlay, ModalStyled } from './Modal.styled';
+// import { BsXLg } from 'react-icons/bs';
 
-const modalroot = document.querySelector('#modal-root');
+const modalRoot = document.querySelector('#modal-root');
 
 export class Modal extends Component {
   static propTypes = {
@@ -12,6 +13,14 @@ export class Modal extends Component {
     children: PropTypes.node.isRequired,
   };
 
+    componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
   handleKeyDown = e => {
     if (e.code === "Escape") {
       this.props.onClose();
@@ -19,7 +28,7 @@ export class Modal extends Component {
   };
    
   handleBackdropClick = event => {
-    if (event, currentTarget === event.target) {
+    if ( event.currentTarget === event.target) {
       this.props.onClose();
     }
   };
@@ -27,9 +36,12 @@ export class Modal extends Component {
 
   render() {
     return createPortal(
-      <overlay onClick={this}
-      <ModalStyled> {this.props.children}</ModalStyled>
-    )
+      <Overlay onClick={this.handleBackdropClick}>
+        <ModalStyled> {this.props.children}</ModalStyled>
+      </Overlay>,
+      modalRoot
+      );
   }
-
 }
+
+

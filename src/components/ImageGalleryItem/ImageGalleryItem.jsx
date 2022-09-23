@@ -2,22 +2,22 @@ import PropTypes from 'prop-types';
 import {GalleryItem,GalleryItemImg } from './ImageGalleryItem.styled'
 
 export const ImageGalleryItem = ({
-  smallFormat,
-  largeFormat,
+  webformatURL,
+  largeImageURL,
   tags,
   onClick,
 }) => (
   <GalleryItem
     onClick = {() => {
-      onClick(largeFormat);
+      onClick(largeImageURL);
     }}>
-  <GalleryItemImg src={largeFormat} alt={tags}/>
+  <GalleryItemImg src={largeImageURL} alt={tags}/>
   </GalleryItem>
 );
 
 ImageGalleryItem.propTypes = {
-  largeFormat: PropTypes.string.isRequired,
-  smallFormat: PropTypes.string.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
+  webformatURL: PropTypes.string.isRequired,
   tags: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };

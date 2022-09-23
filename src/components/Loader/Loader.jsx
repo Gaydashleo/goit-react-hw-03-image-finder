@@ -3,8 +3,8 @@ import { LoaderStyled } from './Loader.styled';
 
 export const Loader = () => {
   return (
-    <Loader>
+    <LoaderStyled>
       <Oval />
-    </Loader>
+    </LoaderStyled>
   );
 };
