@@ -5,8 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Container } from './App.styled';
 import { SearchBar } from 'components/Searchbar/Searchbar';
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
-import { Button } from 'components/Button/Button';
-import { Loader } from 'components/Loader/Loader';
+// import { Button } from 'components/Button/Button';
+// import { Loader } from 'components/Loader/Loader';
 
 export class App extends Component {
   state = {

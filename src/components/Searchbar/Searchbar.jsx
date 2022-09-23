@@ -45,7 +45,7 @@ export class SearchBar extends Component{
  <Header>
   <Form >
     <Button type="submit" >
-      <span class="button-label">Search</span>
+      <span className="button-label">Search</span>
     </Button>
 
     <Input
@@ -53,8 +53,8 @@ export class SearchBar extends Component{
       name="query"
       value={query}
       onChange={this.handleChange}
-      autocomplete="off"
-      autofocus
+      autoComplete="off"
+      autoFocus
       placeholder="Search images and photos"
     />
   </Form>
