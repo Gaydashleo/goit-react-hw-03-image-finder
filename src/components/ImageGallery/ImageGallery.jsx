@@ -9,7 +9,7 @@ export const ImageGallery = ({ images, onClick}) => {
         <ImageGalleryItem
           key={id}
           webformatURL={webformatURL}
-          largeImageURLt={largeImageURL}
+          largeImageURL={largeImageURL}
           tags={tags}
           onClick={onClick} />
       ))}
@@ -26,4 +26,5 @@ ImageGallery.propTypes = {
       tags: PropTypes.string.isRequired,
     })
   ),
+  onClick:PropTypes.func.isRequired
 };

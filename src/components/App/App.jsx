@@ -26,7 +26,7 @@ export class App extends Component {
     const nextQuery = this.state.query;
     const { page } = this.state;
 
-    if (prevQuery !==nextQuery || (prevState.page !==page && page !==1)) {
+    if (prevQuery !== nextQuery || (prevState.page !== page && page !== 1)) {
       this.fetchImages();
     }
   }
@@ -41,8 +41,8 @@ export class App extends Component {
       .then(({ picture, totalPicture }) => {
         const totalPages = Math.ceil(totalPicture / perPage);
         
-        if (picture.lenght === 0) {
-          return toast.error('Sorry, no images found. Please, try again!');
+        if (picture.length === 0) {
+          return toast.error('Sorry, no found images. Please, try again!');
         }
         
         if (page === 1) {
@@ -75,7 +75,13 @@ export class App extends Component {
       query,
       page: 1,
       error: null,
-    })
+    });
+  };
+  onLoadMore = () => {
+    this.setState(({ page }) => ({
+      page: page + 1,
+      isLoading: true,
+    }));
   };
 
   toggleModal = largeImageURL => {
@@ -86,10 +92,10 @@ export class App extends Component {
   };
 
   render() {
-    const{images,error, isLoading, showModal,largeImageURL,tags,total}=this.state
-    const lastPage = images.lenght === total;
-    const lenghtImages = images.lenght !== 0;
-    const loadMoreButton = lenghtImages && !isLoading && lastPage;
+    const { images, error, isLoading, showModal, largeImageURL, tags, total } = this.state;
+    const lastPage = images.length === total;
+    const lengthImages = images.length !== 0;
+    const loadMoreButton = lengthImages && !isLoading && lastPage;
 
     return (
     <Container>
@@ -99,7 +105,7 @@ export class App extends Component {
         
         {isLoading && <Loader />}
         
-        {lenghtImages && (
+        {lengthImages && (
           <ImageGallery images={images} onClick={this.toggleModal} />
         )}
 
@@ -110,10 +116,6 @@ export class App extends Component {
           <img src={largeImageURL} alt={tags}/>
         </Modal>
         )}
-
-        
-      
-
 
       <ToastContainer position="bottom-center" closeOnClick autoClose={5000}/>
 
