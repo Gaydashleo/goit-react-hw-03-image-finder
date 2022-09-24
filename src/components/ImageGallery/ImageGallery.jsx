@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import { Gallery } from './ImageGallery.styled';
 
-export const ImageGallery = ({ images, onClick}) => {
+export const ImageGallery = ({ images, onClick }) => {
   return (
     <Gallery>
       {images.map(({ id, webformatURL, largeImageURL, tags }) => (
@@ -11,20 +11,21 @@ export const ImageGallery = ({ images, onClick}) => {
           webformatURL={webformatURL}
           largeImageURL={largeImageURL}
           tags={tags}
-          onClick={onClick} />
+          onClick={onClick}
+        />
       ))}
     </Gallery>
   );
 };
 
-ImageGallery.propTypes = {
-  images: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      webformatURL: PropTypes.string.isRequired,
-      largeImageURL: PropTypes.string.isRequired,
-      tags: PropTypes.string.isRequired,
-    })
-  ),
-  onClick:PropTypes.func.isRequired
-};
+  ImageGallery.propTypes = {
+    images: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        webformatURL: PropTypes.string.isRequired,
+        largeImageURL: PropTypes.string.isRequired,
+        tags: PropTypes.string.isRequired,
+      })
+    ),
+    onClick: PropTypes.func.isRequired,
+  };

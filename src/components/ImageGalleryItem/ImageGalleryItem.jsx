@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {GalleryItem,GalleryItemImg } from './ImageGalleryItem.styled'
+import { GalleryItem, GalleryItemImg } from './ImageGalleryItem.styled';
 
 export const ImageGalleryItem = ({
   webformatURL,

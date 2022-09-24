@@ -1,10 +1,10 @@
-import { Oval } from 'react-loader-spinner';
-import { LoaderStyled } from './Loader.styled';
+import { TailSpin } from 'react-loader-spinner';
+import { StyledLoader } from './Loader.styled';
 
 export const Loader = () => {
   return (
-    <LoaderStyled>
-      <Oval />
-    </LoaderStyled>
+    <StyledLoader>
+      <TailSpin />
+    </StyledLoader>
   );
 };

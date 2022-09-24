@@ -2,24 +2,24 @@ import { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Container } from './App.styled';
+import { fetchData } from 'services/PixabayApi';
 import { SearchBar } from 'components/Searchbar/Searchbar';
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Button } from 'components/Button/Button';
-import { Loader } from 'components/Loader/Loader';
 import { Modal } from 'components/Modal/Modal';
-import { fetchData } from 'services/PixabayApi';
+import { Loader } from 'components/Loader/Loader';
+import { Container } from './App.styled';
 
 export class App extends Component {
   state = {
-    images:[],
+    images: [],
+    isLoading: false,
     query: '',
-    page: 1,
     error: null,
+    page: 1,
     showModal: false,
     largeImageURL: null,
-    isLoading:false,
-  }
+  };
 
   componentDidUpdate(prevProps, prevState) {
     const prevQuery = prevState.query;
@@ -38,21 +38,22 @@ export class App extends Component {
     this.setState({ isLoading: true });
 
     fetchData(query, page, perPage)
-      .then(({ picture, totalPicture }) => {
-        const totalPages = Math.ceil(totalPicture / perPage);
-        
-        if (picture.length === 0) {
-          return toast.error('Sorry, no found images. Please, try again!');
+      .then(({ hits, totalHits }) => {
+        const totalPages = Math.ceil(totalHits / perPage);
+
+        if (hits.length === 0) {
+          return toast.error('Sorry, no images found. Please, try again!');
         }
-        
+
         if (page === 1) {
-          toast.success(`Hooray! We found ${totalPicture} images.`);
+          toast.success(`Hooray! We found ${totalHits} images.`);
         }
 
         if (page === totalPages) {
-          toast.info('The end of search results.');
+          toast.info("You've reached the end of search results.");
         }
-        const data = picture.map(({ id, webformatURL, largeImageURL, tags }) => {
+
+        const data = hits.map(({ id, webformatURL, largeImageURL, tags }) => {
           return {
             id,
             webformatURL,
@@ -62,12 +63,14 @@ export class App extends Component {
         });
         this.setState(({ images }) => ({
           images: [...images, ...data],
-          total: totalPicture,
+          // page: page + 1,
+          total: totalHits,
         }));
-      }).catch(error => this.setState({ error }))
+      })
+      .catch(error => this.setState({ error }))
       .finally(() => this.setState({ isLoading: false }));
-      };
-   
+  };
+
   handleSearch = query => {
     if (query === this.state.query) return;
     this.setState({
@@ -77,6 +80,7 @@ export class App extends Component {
       error: null,
     });
   };
+
   onLoadMore = () => {
     this.setState(({ page }) => ({
       page: page + 1,
@@ -92,35 +96,34 @@ export class App extends Component {
   };
 
   render() {
-    const { images, error, isLoading, showModal, largeImageURL, tags, total } = this.state;
-    const lastPage = images.length === total;
-    const lengthImages = images.length !== 0;
-    const loadMoreButton = lengthImages && !isLoading && lastPage;
+    const { images, error, isLoading, showModal, largeImageURL, tags, total } =
+      this.state;
+    const loadImages = images.length !== 0;
+    const isLastPage = images.length === total;
+    const loadMoreBtn = loadImages && !isLoading && !isLastPage;
 
     return (
-    <Container>
+      <Container>
         <SearchBar onSubmit={this.handleSearch} />
-        
+
         {error && toast.error(error.message)}
-        
+
         {isLoading && <Loader />}
-        
-        {lengthImages && (
+
+        {loadImages && (
           <ImageGallery images={images} onClick={this.toggleModal} />
         )}
 
-        {loadMoreButton && <Button onClick={this.onLoadMore}>Load more</Button>}
-        
+        {loadMoreBtn && <Button onClick={this.onLoadMore}>Load more</Button>}
+
         {showModal && (
-            <Modal onClose={this.toggleModal}>
-          <img src={largeImageURL} alt={tags}/>
-        </Modal>
+          <Modal onClose={this.toggleModal}>
+            <img src={largeImageURL} alt={tags} />
+          </Modal>
         )}
 
-      <ToastContainer position="bottom-center" closeOnClick autoClose={5000}/>
-
-  </Container>
-  );
-};
+        <ToastContainer theme="colored" position="top-right" autoClose={3000} />
+      </Container>
+    );
   }
-
+}
