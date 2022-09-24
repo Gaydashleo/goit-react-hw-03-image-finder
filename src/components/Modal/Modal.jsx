@@ -1,8 +1,9 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
-// import { GrClose } from 'react-icons/gr';
-import { Overlay, ModalStyled } from './Modal.styled';
+import { AiFillCloseCircle} from 'react-icons/ai';
+
+import { ModalOverlay, ModalStyled } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -27,21 +28,21 @@ export class Modal extends Component {
     }
   };
 
-  handleBackdropClick = e => {
-    if (e.currentTarget === e.target) {
+  handleBackdropClick = event => {
+    if (event.currentTarget === event.target) {
       this.props.onClose();
     }
   };
 
   render() {
     return createPortal(
-      <Overlay onClick={this.handleBackdropClick}>
+      <ModalOverlay onClick={this.handleBackdropClick}>
         <ModalStyled>{this.props.children}</ModalStyled>
-        {/* <button type="button" onClick={this.props.onClose}>
-          <GrClose style={{ width: 30, height: 30 }} />
-        </button> */}
-      </Overlay>,
-      modalRoot
+         <button type="button" onClick={this.props.onClose}>
+          <AiFillCloseCircle style={{ width: 20, height: 20 }} />
+        </button>
+      </ModalOverlay>,
+      modalRoot,
     );
   }
 }
