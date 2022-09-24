@@ -121,9 +121,6 @@ export class App extends Component {
 
         {loadMoreBtn && <Button onClick={this.onLoadMore}>Load more</Button>}
 
-      
-          
-
         <ToastContainer theme="colored" position="top-right" autoClose={3000} />
       </Container>
     );
