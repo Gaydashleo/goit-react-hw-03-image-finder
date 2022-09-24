@@ -63,7 +63,6 @@ export class App extends Component {
         });
         this.setState(({ images }) => ({
           images: [...images, ...data],
-          // page: page + 1,
           total: totalHits,
         }));
       })
@@ -114,13 +113,16 @@ export class App extends Component {
           <ImageGallery images={images} onClick={this.toggleModal} />
         )}
 
-        {loadMoreBtn && <Button onClick={this.onLoadMore}>Load more</Button>}
-
-        {showModal && (
+            {showModal && (
           <Modal onClose={this.toggleModal}>
             <img src={largeImageURL} alt={tags} />
           </Modal>
         )}
+
+        {loadMoreBtn && <Button onClick={this.onLoadMore}>Load more</Button>}
+
+      
+          
 
         <ToastContainer theme="colored" position="top-right" autoClose={3000} />
       </Container>
