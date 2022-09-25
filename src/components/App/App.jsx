@@ -119,7 +119,7 @@ export class App extends Component {
           </Modal>
         )}
 
-        {loadMoreBtn && <Button onClick={this.onLoadMore}>Load more</Button>}
+        {loadMoreBtn && <Button onClick={this.onLoadMore}></Button>}
 
         <ToastContainer theme="colored" position="top-right" autoClose={3000} />
       </Container>

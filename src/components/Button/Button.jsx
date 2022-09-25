@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
 import { StyledButton } from './Button.styled';
 
-export const Button = ({ children, onClick }) => (
+export const Button = ( { onClick }) => (
   <StyledButton type="button" onClick={onClick}>
-    {children}
-  </StyledButton>
+   Load more
+  </StyledButton> 
 );
 
 Button.propTypes = {
-  children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
 };
